@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,12 +16,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/kola', function () {
+    $kola = DB::table('cars')->where('model','101')->get();
+    return $kola;
+});
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//web.php
 
 Route::get('add','CarController@create')->name('add.car');
 Route::post('add','CarController@store');
