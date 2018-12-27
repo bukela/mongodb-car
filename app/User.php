@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
