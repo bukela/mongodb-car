@@ -21,6 +21,9 @@ class CarController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'price' => 'numeric'
+        ]);
         $car = new Car();
         $car->carcompany = $request->get('carcompany');
         $car->model = $request->get('model');
