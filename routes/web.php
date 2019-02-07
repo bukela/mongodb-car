@@ -1,5 +1,7 @@
 <?php
 
+use App\Message;
+use App\Events\MessageSent;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -36,3 +38,24 @@ Route::delete('{id}','CarController@destroy');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Return all messages that will populate our chat messages
+Route::get('/getAll', function () {
+    $messages = Message::take(200)->pluck('content');
+    return $messages;
+});
+
+// Allows us to post new message
+Route::post('/post', function () {
+    $message = new Message();
+    $content = request('message');
+    $message->content = $content;
+    $message->save();
+
+    event(new MessageSent($content));
+    return $content;
+});
+
+Route::get('test-broadcast', function(){
+    broadcast(new \App\Events\ExampleEvent);
+});
