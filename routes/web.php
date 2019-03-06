@@ -56,6 +56,7 @@ Route::post('/post', function () {
     return $content;
 });
 
-Route::get('test-broadcast', function(){
+Route::get('/test-broadcast', function(){
     broadcast(new \App\Events\ExampleEvent);
+    return view('welcome');
 });

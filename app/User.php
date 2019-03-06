@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use Maklad\Permission\Traits\HasRoles;
 // use Illuminate\Foundation\Auth\User as Authenticatable;
 use Jenssegers\Mongodb\Auth\User as Authenticatable;
 
@@ -12,7 +13,7 @@ use Jenssegers\Mongodb\Auth\User as Authenticatable;
 class User extends Authenticatable implements JWTSubject
 
 {
-    use Notifiable;
+    use Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
